@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>立冬 · 电子科技大学校学生会宣传部</title>
+<meta name="description" content="立冬 · 二十四节气 · 电子科技大学校学生会宣传部冬季特辑">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#f4f6f8; --bg-soft:#edf1f5;
+  --ink:#25313d; --ink-soft:#5d6c7b; --mist:#9db1c4;
+  --line:rgba(37,49,61,.10);
+  --blue:#2c5580; --seal:#b03d2e;
+  --card:rgba(255,255,255,.72);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --serif:"Noto Serif SC","Source Han Serif SC","Songti SC","STSong","SimSun",serif;
+  --sans:"Noto Sans SC","Inter","PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+}
+html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:16px;line-height:1.9;letter-spacing:.02em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:rgba(44,85,128,.16)}
+a{color:inherit;text-decoration:none}
+svg{display:block}
+#snow{position:fixed;inset:0;z-index:60;pointer-events:none}
+.grain{position:fixed;inset:0;z-index:61;pointer-events:none;opacity:.55;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/></svg>")}
+/* ---------- nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:70;background:rgba(244,246,248,.72);-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);border-bottom:1px solid transparent;transition:border-color .4s var(--ease),background .4s var(--ease)}
+.nav.scrolled{border-bottom-color:var(--line);background:rgba(244,246,248,.86)}
+.nav-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:13px 28px;position:relative}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-seal{width:34px;height:34px;border-radius:8px;background:linear-gradient(155deg,#b8442f,#96311f);display:grid;place-items:center;box-shadow:0 6px 14px rgba(150,49,31,.25),inset 0 0 0 2px rgba(255,255,255,.18)}
+.brand-seal span{font-family:var(--serif);color:#f7f0ea;font-size:17px;font-weight:700;line-height:1}
+.brand-text{display:flex;flex-direction:column;line-height:1.35}
+.brand-text b{font-size:14px;font-weight:600;letter-spacing:.08em}
+.brand-text i{font-style:normal;font-size:11px;color:var(--ink-soft);letter-spacing:.22em}
+.nav-links{display:flex;gap:30px;list-style:none}
+.nav-links a{position:relative;font-size:13.5px;letter-spacing:.14em;color:var(--ink-soft);padding:6px 2px;transition:color .3s var(--ease)}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.menu-btn{display:none;background:none;border:0;cursor:pointer;padding:8px;color:var(--ink)}
+.menu-btn span{display:block;width:20px;height:2px;background:var(--ink);margin:4px 0;border-radius:2px;transition:transform .35s var(--ease),opacity .3s}
+.nav-open .menu-btn span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav-open .menu-btn span:nth-child(2){opacity:0}
+.nav-open .menu-btn span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+@media(max-width:880px){
+ .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:rgba(244,246,248,.96);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:8px 28px 18px;display:none}
+ .nav-open .nav-links{display:flex}
+ .nav-links li{padding:10px 0;border-bottom:1px solid var(--line)}
+ .nav-links li:last-child{border-bottom:0}
+ .menu-btn{display:block}
+}
+/* ---------- hero ---------- */
+.hero{min-height:100svh;position:relative;display:flex;align-items:center;overflow:hidden;background:
+ radial-gradient(1100px 560px at 82% -12%,#ffffff 0%,rgba(255,255,255,0) 60%),
+ radial-gradient(900px 520px at -8% 112%,#e3ebf3 0%,rgba(227,235,243,0) 55%),
+ linear-gradient(180deg,#f8fafb 0%,#f3f6f8 100%)}
+.hero-water{position:absolute;right:-140px;top:-120px;width:560px;height:560px;opacity:.14;animation:spin 170s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-inner{max-width:1180px;width:100%;margin:0 auto;padding:150px 28px 140px;display:flex;align-items:center;justify-content:space-between;gap:56px;position:relative;z-index:2;will-change:transform,opacity}
+.kicker{font-size:12px;letter-spacing:.42em;color:var(--mist);text-transform:uppercase;font-weight:500}
+.hero-date{font-size:13px;letter-spacing:.3em;color:var(--ink-soft);margin-top:18px}
+.hero-title{font-family:var(--serif);font-weight:900;font-size:clamp(96px,17vw,196px);line-height:1.04;letter-spacing:.04em;margin:14px 0 6px;display:flex}
+.hero-title span{display:inline-block;opacity:0;transform:translateY(34px);animation:rise 1.1s var(--ease) forwards;animation-delay:var(--d)}
+@keyframes rise{to{opacity:1;transform:none}}
+.hero-en{font-size:11.5px;letter-spacing:.5em;color:var(--mist);text-transform:uppercase;margin-bottom:26px}
+.hero-sub{font-family:var(--serif);font-size:19px;color:var(--ink-soft);letter-spacing:.12em;font-weight:500}
+.hero-sub em{font-style:normal;color:var(--seal)}
+.hero-right{display:flex;align-items:flex-start;gap:34px;flex-shrink:0}
+.seal{width:104px;height:104px;background:linear-gradient(155deg,#b8442f,#96311f);border-radius:14px;display:grid;place-items:center;box-shadow:0 16px 34px rgba(150,49,31,.3),inset 0 0 0 3px rgba(255,255,255,.16);transform:rotate(2.5deg)}
+.seal span{writing-mode:vertical-rl;font-family:var(--serif);font-size:36px;color:#f7f0ea;letter-spacing:10px;font-weight:700;line-height:1}
+.note-card{width:270px;background:var(--card);-webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3);border:1px solid rgba(255,255,255,.9);box-shadow:0 18px 44px rgba(37,49,61,.08);padding:26px 26px 20px;position:relative}
+.note-card::before{content:"";position:absolute;top:0;left:26px;right:26px;height:2px;background:linear-gradient(90deg,transparent,var(--mist),transparent)}
+.note-title{font-family:var(--serif);font-size:15px;letter-spacing:.3em;color:var(--ink-soft);margin-bottom:16px;text-align:center}
+.note-line{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:13px}
+.note-line:last-child{border-bottom:0}
+.note-line span{color:var(--mist);letter-spacing:.2em;flex-shrink:0}
+.note-line b{font-weight:500;color:var(--ink);text-align:right;letter-spacing:.04em}
+.side-vertical{position:absolute;right:34px;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;font-family:var(--serif);font-size:13px;letter-spacing:.6em;color:var(--mist);opacity:.8}
+.hero-wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:88px;z-index:1}
+.scroll-cue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;font-size:11px;letter-spacing:.4em;color:var(--mist);z-index:2}
+.scroll-cue i{width:1px;height:44px;background:linear-gradient(180deg,transparent,var(--mist));position:relative;overflow:hidden;display:block}
+.scroll-cue i::after{content:"";position:absolute;left:0;top:-100%;width:100%;height:100%;background:var(--ink);animation:drip 2.4s var(--ease) infinite}
+@keyframes drip{0%{top:-100%}55%{top:0}100%{top:100%}}
+/* ---------- sections ---------- */
+.sec{position:relative;padding:130px 24px}
+main section,footer{scroll-snap-align:start;scroll-snap-stop:always}
+.wrap{max-width:1080px;margin:0 auto}
+.sec-band{background:linear-gradient(180deg,#fbfcfd 0%,var(--bg) 100%)}
+.sec-head{display:grid;grid-template-columns:1fr minmax(0,430px);gap:24px 64px;align-items:end;margin-bottom:64px;padding-bottom:30px;border-bottom:1px solid var(--line)}
+.sec-head h2{font-family:var(--serif);font-size:clamp(34px,4.6vw,50px);font-weight:700;letter-spacing:.06em;line-height:1.25;margin-top:14px}
+.sec-lead{font-size:14.5px;color:var(--ink-soft);line-height:2.05;letter-spacing:.03em}
+.sec-lead em{font-style:normal;color:var(--seal)}
+/* 三候 */
+.sanyin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.sanyin{background:var(--card);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(37,49,61,.07);box-shadow:0 10px 30px rgba(37,49,61,.05);padding:34px 30px 30px;position:relative;transition:transform .55s var(--ease),box-shadow .55s var(--ease),border-color .55s var(--ease)}
+.sanyin:hover{transform:translateY(-5px);box-shadow:0 22px 48px rgba(37,49,61,.09);border-color:rgba(44,85,128,.22)}
+.sanyin-num{font-family:var(--serif);font-size:42px;font-weight:700;color:#c5d3e1;line-height:1;margin-bottom:18px}
+.sanyin h3{font-family:var(--serif);font-size:21px;font-weight:700;letter-spacing:.14em;margin-bottom:10px}
+.sanyin p{font-size:13.5px;color:var(--ink-soft);line-height:2}
+/* 冬景 */
+.scene-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.scene{background:#fff;border:1px solid rgba(37,49,61,.07);box-shadow:0 10px 30px rgba(37,49,61,.05);overflow:hidden;transition:transform .55s var(--ease),box-shadow .55s var(--ease)}
+.scene:hover{transform:translateY(-5px);box-shadow:0 24px 52px rgba(37,49,61,.1)}
+.scene-art{overflow:hidden}
+.scene-art svg{width:100%;height:auto;transition:transform 1.2s var(--ease)}
+.scene:hover .scene-art svg{transform:scale(1.035)}
+.scene figcaption{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:16px 20px;border-top:1px solid var(--line);background:rgba(255,255,255,.8)}
+.scene figcaption b{font-family:var(--serif);font-size:16px;letter-spacing:.2em;font-weight:700}
+.scene figcaption span{font-family:var(--serif);font-size:12.5px;color:var(--ink-soft);letter-spacing:.06em;text-align:right}
+/* 冬趣 */
+.qu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.qu-item{display:flex;flex-direction:column;gap:8px;padding:30px 28px;background:var(--card);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(37,49,61,.07);box-shadow:0 10px 30px rgba(37,49,61,.05);transition:transform .55s var(--ease),box-shadow .55s var(--ease),border-color .55s var(--ease)}
+.qu-item:hover{transform:translateY(-5px);box-shadow:0 22px 48px rgba(37,49,61,.09);border-color:rgba(44,85,128,.22)}
+.qu-icon{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(150deg,#fff,#eef3f8);border:1px solid rgba(37,49,61,.08);color:#4c5f73;margin-bottom:10px;transition:transform .55s var(--ease)}
+.qu-item:hover .qu-icon{transform:scale(1.06) rotate(-4deg)}
+.icon{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.qu-item h3{font-family:var(--serif);font-size:18px;font-weight:700;letter-spacing:.16em}
+.qu-item p{font-size:13px;color:var(--ink-soft);line-height:1.9}
+.steam path{transform-box:fill-box;animation:steam 3.2s ease-in-out infinite}
+@keyframes steam{0%,100%{opacity:.35;transform:translateY(0)}50%{opacity:.95;transform:translateY(-1.5px)}}
+/* 食俗 */
+.shi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.shi-item{padding:34px 30px;border:1px solid rgba(37,49,61,.07);background:linear-gradient(165deg,rgba(255,255,255,.9),rgba(243,247,250,.85));box-shadow:0 10px 30px rgba(37,49,61,.05);position:relative;overflow:hidden;transition:transform .55s var(--ease),box-shadow .55s var(--ease)}
+.shi-item::after{content:"";position:absolute;right:-30px;bottom:-30px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,rgba(44,85,128,.07),transparent 70%)}
+.shi-item:hover{transform:translateY(-5px);box-shadow:0 22px 48px rgba(37,49,61,.09)}
+.shi-num{font-size:11px;letter-spacing:.4em;color:var(--mist);margin-bottom:14px}
+.shi-icon{color:#4c5f73;margin-bottom:18px}
+.shi-item h3{font-family:var(--serif);font-size:20px;font-weight:700;letter-spacing:.2em;margin-bottom:10px}
+.shi-item p{font-size:13.5px;color:var(--ink-soft);line-height:2}
+/* 科大 */
+.uestc-card{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:56px;align-items:center;background:linear-gradient(160deg,rgba(255,255,255,.92),rgba(240,245,249,.9));border:1px solid rgba(255,255,255,.95);box-shadow:0 24px 60px rgba(37,49,61,.08);padding:56px 54px;position:relative;overflow:hidden}
+.uestc-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--blue),var(--mist))}
+.uestc-copy p{font-size:15px;color:var(--ink-soft);line-height:2.2;letter-spacing:.03em;margin-bottom:22px}
+.uestc-copy p b{color:var(--ink);font-weight:600}
+.uestc-quote{border-left:2px solid rgba(176,61,46,.45);padding:6px 0 6px 20px;font-family:var(--serif);font-size:16.5px;line-height:2.1;letter-spacing:.08em;color:var(--ink)}
+.uestc-quote b{color:var(--seal);letter-spacing:.14em}
+.uestc-side{display:flex;flex-direction:column;gap:22px;align-items:flex-end}
+.chip-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end}
+.chip{font-size:12px;letter-spacing:.14em;color:var(--ink-soft);padding:8px 16px;border:1px solid rgba(37,49,61,.12);border-radius:999px;background:rgba(255,255,255,.7);transition:all .4s var(--ease);cursor:default}
+.chip:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px)}
+/* footer */
+footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:72px 24px 56px;text-align:center;position:relative}
+.foot-seal{width:64px;height:64px;margin:0 auto 22px;background:linear-gradient(155deg,#b8442f,#96311f);border-radius:10px;display:grid;place-items:center;box-shadow:0 12px 26px rgba(150,49,31,.26),inset 0 0 0 2px rgba(255,255,255,.16);transform:rotate(2deg)}
+.foot-seal span{writing-mode:vertical-rl;font-family:var(--serif);font-size:22px;color:#f7f0ea;letter-spacing:6px;font-weight:700;line-height:1}
+.foot-name{font-family:var(--serif);font-size:17px;letter-spacing:.3em;font-weight:600}
+.foot-line{font-size:12.5px;color:var(--ink-soft);letter-spacing:.24em;margin-top:10px}
+.foot-small{font-size:11px;color:var(--mist);letter-spacing:.2em;margin-top:22px}
+/* reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .95s var(--ease),transform .95s var(--ease);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+ .reveal{opacity:1;transform:none;transition:none}
+ .hero-title span{opacity:1;transform:none;animation:none}
+ .hero-water,.scroll-cue i::after,.steam path{animation:none}
+ html{scroll-behavior:auto}
+}
+@media(max-width:960px){
+ .sec{padding:92px 20px}
+ .sec-head{grid-template-columns:1fr;align-items:start}
+ .sanyin-grid,.qu-grid,.shi-grid,.scene-grid{grid-template-columns:1fr 1fr}
+ .hero-right{flex-direction:column;align-items:stretch;gap:24px}
+ .seal{width:84px;height:84px}
+ .seal span{font-size:28px;letter-spacing:8px}
+ .note-card{width:100%}
+ .side-vertical{display:none}
+ .uestc-card{grid-template-columns:1fr;padding:40px 30px}
+ .uestc-side{align-items:flex-start}
+ .chip-row{justify-content:flex-start}
+}
+@media(max-width:600px){
+ .sanyin-grid,.qu-grid,.shi-grid,.scene-grid{grid-template-columns:1fr}
+ .hero-inner{padding:130px 22px 120px}
+}
+</style>
+</head>
+<body>
+<canvas id="snow" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+ <symbol id="i-tea" viewBox="0 0 24 24"><path d="M5 11h11v4.5a4.5 4.5 0 0 1-4.5 4.5h-2A4.5 4.5 0 0 1 5 15.5Z"/><path d="M16 12h1.8a2.6 2.6 0 0 1 0 5.2H16"/><g class="steam"><path d="M8.6 7.5c0-1.4 1.4-1.6 1.4-3"/><path d="M12.2 7.5c0-1.4 1.4-1.6 1.4-3"/></g></symbol>
+ <symbol id="i-pot" viewBox="0 0 24 24"><path d="M4.5 11.5h15"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><g class="steam"><path d="M9 8c0-1.3 1.3-1.5 1.3-2.8"/><path d="M13.7 8c0-1.3 1.3-1.5 1.3-2.8"/></g></symbol>
+ <symbol id="i-snowman" viewBox="0 0 24 24"><circle cx="12" cy="7.2" r="3.2"/><circle cx="12" cy="16.4" r="4.8"/><circle cx="10.8" cy="7" r=".55" fill="currentColor" stroke="none"/><circle cx="13.2" cy="7" r=".55" fill="currentColor" stroke="none"/><circle cx="10.6" cy="15.8" r=".55" fill="currentColor" stroke="none"/><circle cx="13.4" cy="15.8" r=".55" fill="currentColor" stroke="none"/></symbol>
+ <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="10.5" cy="13.5" r="5" stroke-dasharray="2.4 2.6"/><circle cx="18.5" cy="7" r="2.6"/><path d="M4.5 6.5l1.8 1.8M3.5 11h2.4M6 16.5l1.8-1.8"/></symbol>
+ <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5C10.2 5 7.6 4.6 4.5 5v13c3.1-.4 5.7 0 7.5 1.5 1.8-1.5 4.4-1.9 7.5-1.5V5c-3.1-.4-5.7 0-7.5 1.5Z"/><path d="M12 6.5v13"/></symbol>
+ <symbol id="i-window" viewBox="0 0 24 24"><rect x="4" y="4.5" width="16" height="15" rx="2"/><path d="M12 4.5v15"/><circle cx="8.6" cy="9.5" r=".7" fill="currentColor" stroke="none"/><circle cx="15.4" cy="13" r=".7" fill="currentColor" stroke="none"/><circle cx="9.4" cy="15.5" r=".7" fill="currentColor" stroke="none"/></symbol>
+ <symbol id="i-dumpling" viewBox="0 0 24 24"><path d="M4.5 15.5a7.5 7.5 0 0 1 15 0Z"/><path d="M7.5 12.8c.5-.9 1.4-1.6 2.4-2M14.1 10.9c1 .5 1.9 1.2 2.4 2.1"/></symbol>
+ <symbol id="i-cup" viewBox="0 0 24 24"><path d="M6.5 9.5h11v5a5.5 5.5 0 0 1-5.5 5.5A5.5 5.5 0 0 1 6.5 14.5Z"/><g class="steam"><path d="M10 6.5c0-1.3 1.3-1.5 1.3-2.8"/><path d="M13.8 6.5c0-1.3 1.3-1.5 1.3-2.8"/></g></symbol>
+</svg>
+</style>
+</head>
+<body>
+<canvas id="snow" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+ <symbol id="i-tea" viewBox="0 0 24 24"><path d="M5 11h11v4.5a4.5 4.5 0 0 1-4.5 4.5h-2A4.5 4.5 0 0 1 5 15.5Z"/><path d="M16 12h1.8a2.6 2.6 0 0 1 0 5.2H16"/><g class="steam"><path d="M8.6 7.5c0-1.4 1.4-1.6 1.4-3"/><path d="M12.2 7.5c0-1.4 1.4-1.6 1.4-3"/></g></symbol>
+ <symbol id="i-pot" viewBox="0 0 24 24"><path d="M4.5 11.5h15"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><g class="steam"><path d="M9 8c0-1.3 1.3-1.5 1.3-2.8"/><path d="M13.7 8c0-1.3 1.3-1.5 1.3-2.8"/></g></symbol>
+ <symbol id="i-snowman" viewBox="0 0 24 24"><circle cx="12" cy="7.2" r="3.2"/><circle cx="12" cy="16.4" r="4.8"/><circle cx="10.8" cy="7" r=".55" fill="currentColor" stroke="none"/><circle cx="13.2" cy="7" r=".55" fill="currentColor" stroke="none"/><circle cx="10.6" cy="15.8" r=".55" fill="currentColor" stroke="none"/><circle cx="13.4" cy="15.8" r=".55" fill="currentColor" stroke="none"/></symbol>
+ <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="10.5" cy="13.5" r="5" stroke-dasharray="2.4 2.6"/><circle cx="18.5" cy="7" r="2.6"/><path d="M4.5 6.5l1.8 1.8M3.5 11h2.4M6 16.5l1.8-1.8"/></symbol>
+ <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5C10.2 5 7.6 4.6 4.5 5v13c3.1-.4 5.7 0 7.5 1.5 1.8-1.5 4.4-1.9 7.5-1.5V5c-3.1-.4-5.7 0-7.5 1.5Z"/><path d="M12 6.5v13"/></symbol>
+ <symbol id="i-window" viewBox="0 0 24 24"><rect x="4" y="4.5" width="16" height="15" rx="2"/><path d="M12 4.5v15"/><circle cx="8.6" cy="9.5" r=".7" fill="currentColor" stroke="none"/><circle cx="15.4" cy="13" r=".7" fill="currentColor" stroke="none"/><circle cx="9.4" cy="15.5" r=".7" fill="currentColor" stroke="none"/></symbol>
+ <symbol id="i-dumpling" viewBox="0 0 24 24"><path d="M4.5 15.5a7.5 7.5 0 0 1 15 0Z"/><path d="M7.5 12.8c.5-.9 1.4-1.6 2.4-2M14.1 10.9c1 .5 1.9 1.2 2.4 2.1"/></symbol>
+ <symbol id="i-cup" viewBox="0 0 24 24"><path d="M6.5 9.5h11v5a5.5 5.5 0 0 1-5.5 5.5A5.5 5.5 0 0 1 6.5 14.5Z"/><g class="steam"><path d="M10 6.5c0-1.3 1.3-1.5 1.3-2.8"/><path d="M13.8 6.5c0-1.3 1.3-1.5 1.3-2.8"/></g></symbol>
+</svg>
+<header class="nav" id="top">
+ <div class="nav-inner">
+  <a class="brand" href="#hero" aria-label="回到顶部">
+   <span class="brand-seal"><span>立</span></span>
+   <span class="brand-text"><b>电子科技大学 · 校学生会</b><i>宣传部 · 立冬特辑</i></span>
+  </a>
+  <nav aria-label="页面导航">
+   <ul class="nav-links">
+    <li><a href="#hero">序</a></li>
+    <li><a href="#jieqi">节气</a></li>
+    <li><a href="#jing">冬景</a></li>
+    <li><a href="#qu">冬趣</a></li>
+    <li><a href="#shi">食俗</a></li>
+    <li><a href="#uestc">科大的冬</a></li>
+   </ul>
+  </nav>
+  <button class="menu-btn" aria-label="菜单" onclick="document.querySelector('.nav').classList.toggle('nav-open')"><span></span><span></span><span></span></button>
+ </div>
+</header>
+<main>
+<section class="hero" id="hero">
+ <svg class="hero-water" viewBox="0 0 200 200" aria-hidden="true">
+  <g fill="none" stroke="#7d94ab" stroke-width="1.6" stroke-linecap="round">
+   <path d="M100 8v184M8 100h184M33 33l134 134M167 33L33 167"/>
+   <path d="M100 30l-10 12 10-6 10 6ZM100 170l-10-12 10 6 10-6ZM30 100l12 10-6-10 6-10ZM170 100l-12 10 6-10-6-10Z"/>
+  </g>
+ </svg>
+ <div class="side-vertical">冬之始 · 万物蔵</div>
+ <div class="hero-inner">
+  <div class="hero-left">
+   <p class="kicker reveal in">2026.11.07 &nbsp;·&nbsp; 24 Solar Terms</p>
+   <h1 class="hero-title" aria-label="立冬">
+    <span style="--d:.15s">立</span><span style="--d:.3s">冬</span>
+   </h1>
+   <p class="hero-en" style="opacity:0;animation:rise 1.1s var(--ease) .5s forwards">The Beginning of Winter</p>
+   <p class="hero-sub" style="opacity:0;animation:rise 1.1s var(--ease) .65s forwards">冬季的第一个节气 · 万物始藏，天地始收 —— <em>宜煮茶，宜围炉，宜见一面</em></p>
+  </div>
+  <div class="hero-right">
+   <div class="seal" aria-hidden="true"><span>立冬</span></div>
+   <aside class="note-card">
+    <p class="note-title">节 气 小 帖</p>
+    <div class="note-line"><span>节气</span><b>第十九 · 立冬</b></div>
+    <div class="note-line"><span>黄经</span><b>225°</b></div>
+    <div class="note-line"><span>三候</span><b>水始冻 · 地始坚 · 雉始入</b></div>
+    <div class="note-line"><span>宜</span><b>煮茶 · 围炉 · 观雪</b></div>
+   </aside>
+  </div>
+ </div>
+ <div class="scroll-cue"><span>向下 · 见冬</span><i></i></div>
+ <svg class="hero-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0 52 C 240 92 480 12 720 40 C 960 68 1200 20 1440 48 L1440 90 L0 90 Z" fill="#f4f6f8"/>
+ </svg>
+</section>
+<section class="sec" id="jieqi">
+ <div class="wrap">
+  <header class="sec-head reveal">
+   <div>
+    <p class="kicker">Solar Term · 节气</p>
+    <h2>冬，终也</h2>
+   </div>
+   <p class="sec-lead">《说文》：「冬，终也，万物收藏也。」立冬，是二十四节气中的第十九个，太阳到达黄经 225°。秋收冬藏，阳气潜于地下，阴气日盛——天地自此转入静默的蓄力。<em>冬天不是萧条，而是大地的深呼吸。</em></p>
+  </header>
+  <div class="sanyin-grid">
+   <article class="sanyin reveal" style="--d:.05s">
+    <div class="sanyin-num">一</div>
+    <h3>水始冻</h3>
+    <p>寒气渐深，浅水初凝成冰。一阳未复，天地先收其华，万物开始懂得收敛与积蓄。</p>
+   </article>
+   <article class="sanyin reveal" style="--d:.15s">
+    <div class="sanyin-num">二</div>
+    <h3>地始坚</h3>
+    <p>地表之气温结而坚，霜雪将至未至。大地以坚硬回应寒冷，也以最深的沉默孕育来春。</p>
+   </article>
+   <article class="sanyin reveal" style="--d:.25s">
+    <div class="sanyin-num">三</div>
+    <h3>雉始入</h3>
+    <p>野雉感阴藏伏，古时以为化作鹌鹑。飞鸟归林，兽穴封土，四野渐入一场漫长的安眠。</p>
+   </article>
+  </div>
+ </div>
+</section>
+<section class="sec sec-band" id="jing">
+ <div class="wrap">
+  <header class="sec-head reveal">
+   <div>
+    <p class="kicker">Winter Views · 冬景</p>
+    <h2>冬的四帖</h2>
+   </div>
+   <p class="sec-lead">冬之美，不在浓烈，而在留白。初雪、霜白、落叶、红梅——<em>四帧小小的画面，便是一幅完整的冬。</em>不必等隆冬，立冬起，每一处细微都在为你铺陈。</p>
+  </header>
+  <div class="scene-grid">
+   <figure class="scene reveal" style="--d:.05s">
+    <div class="scene-art">
+     <svg viewBox="0 0 400 250" role="img" aria-label="初雪">
+      <defs><linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dbe7f1"/><stop offset="1" stop-color="#f6f9fc"/></linearGradient></defs>
+      <rect width="400" height="250" fill="url(#sky1)"/>
+      <circle cx="316" cy="60" r="26" fill="#f3ddcf" opacity=".75"/>
+      <circle cx="316" cy="60" r="40" fill="#f3ddcf" opacity=".22"/>
+      <path d="M0 180 Q 90 128 190 168 T 400 150 V250 H0 Z" fill="#e2ebf3"/>
+      <path d="M0 210 Q 120 158 240 196 T 400 182 V250 H0 Z" fill="#eef3f8"/>
+      <path d="M0 238 Q 140 202 260 228 T 400 214 V250 H0 Z" fill="#fbfdfe"/>
+      <circle cx="58" cy="76" r="2.6" fill="#fff" opacity=".95"/><circle cx="118" cy="120" r="2" fill="#fff" opacity=".8"/><circle cx="206" cy="58" r="2.4" fill="#fff" opacity=".9"/><circle cx="262" cy="112" r="1.8" fill="#fff" opacity=".8"/><circle cx="352" cy="132" r="2.2" fill="#fff" opacity=".85"/><circle cx="86" cy="160" r="1.6" fill="#fff" opacity=".7"/>
+     </svg>
+    </div>
+    <figcaption><b>初雪</b><span>「晚来天欲雪，能饮一杯无。」</span></figcaption>
+   </figure>
+   <figure class="scene reveal" style="--d:.12s">
+    <div class="scene-art">
+     <svg viewBox="0 0 400 250" role="img" aria-label="霜白">
+      <defs><linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eaf1f7"/><stop offset="1" stop-color="#f8fafc"/></linearGradient></defs>
+      <rect width="400" height="250" fill="url(#sky2)"/>
+      <rect y="208" width="400" height="42" fill="#fff" opacity=".9"/>
+      <g stroke="#c2d3e2" stroke-width="2.2" stroke-linecap="round" opacity=".9">
+       <g><line x1="64" y1="176" x2="64" y2="226"/><line x1="43" y1="188" x2="85" y2="214"/><line x1="85" y1="188" x2="43" y2="214"/><circle cx="64" cy="201" r="4" fill="#eef4f9" stroke="none"/></g>
+       <g><line x1="150" y1="190" x2="150" y2="232"/><line x1="133" y1="199" x2="167" y2="223"/><line x1="167" y1="199" x2="133" y2="223"/><circle cx="150" cy="211" r="3.6" fill="#eef4f9" stroke="none"/></g>
+       <g><line x1="238" y1="170" x2="238" y2="228"/><line x1="214" y1="184" x2="262" y2="214"/><line x1="262" y1="184" x2="214" y2="214"/><circle cx="238" cy="199" r="4.4" fill="#eef4f9" stroke="none"/></g>
+       <g><line x1="318" y1="192" x2="318" y2="230"/><line x1="303" y1="200" x2="333" y2="222"/><line x1="333" y1="200" x2="303" y2="222"/><circle cx="318" cy="211" r="3.4" fill="#eef4f9" stroke="none"/></g>
+       <g><line x1="368" y1="180" x2="368" y2="222"/><line x1="351" y1="189" x2="385" y2="213"/><line x1="385" y1="189" x2="351" y2="213"/><circle cx="368" cy="201" r="3.8" fill="#eef4f9" stroke="none"/></g>
+      </g>
+      <circle cx="120" cy="66" r="2" fill="#cfdce9" opacity=".8"/><circle cx="300" cy="92" r="2.4" fill="#cfdce9" opacity=".7"/><circle cx="220" cy="52" r="1.6" fill="#cfdce9" opacity=".8"/>
+     </svg>
+    </div>
+    <figcaption><b>霜白</b><span>「霜华凝素，天地澄然。」</span></figcaption>
+   </figure>
+   <figure class="scene reveal" style="--d:.18s">
+    <div class="scene-art">
+     <svg viewBox="0 0 400 250" role="img" aria-label="落叶">
+      <defs><linearGradient id="sky3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f5"/><stop offset="1" stop-color="#f8fafb"/></linearGradient></defs>
+      <rect width="400" height="250" fill="url(#sky3)"/>
+      <rect y="214" width="400" height="36" fill="#fbfcfd"/>
+      <g fill="#d9a066">
+       <path d="M92 74 c 12 -14 30 -10 34 4 c -12 12 -30 10 -34 -4 Z" opacity=".9"/>
+       <path d="M188 128 c 10 -12 26 -8 30 3 c -10 10 -26 8 -30 -3 Z" opacity=".8" transform="rotate(24 203 128)"/>
+       <path d="M262 62 c 11 -13 28 -9 32 4 c -11 11 -28 9 -32 -4 Z" opacity=".85" transform="rotate(-18 278 62)"/>
+       <path d="M320 150 c 9 -11 24 -7 27 3 c -9 9 -24 8 -27 -3 Z" opacity=".75"/>
+       <path d="M132 172 c 8 -10 21 -6 24 3 c -8 8 -21 7 -24 -3 Z" opacity=".7" transform="rotate(40 144 172)"/>
+      </g>
+      <path d="M100 66 Q 116 44 132 52" fill="none" stroke="#b0896a" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+      <path d="M272 52 Q 286 32 300 38" fill="none" stroke="#b0896a" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+      <circle cx="240" cy="200" r="2.4" fill="#d9a066" opacity=".55"/><circle cx="352" cy="206" r="2" fill="#c98850" opacity=".5"/><circle cx="60" cy="196" r="2" fill="#d9a066" opacity=".5"/>
+     </svg>
+    </div>
+    <figcaption><b>落叶</b><span>「落叶归根，心怀感恩。」</span></figcaption>
+   </figure>
+   <figure class="scene reveal" style="--d:.24s">
+    <div class="scene-art">
+     <svg viewBox="0 0 400 250" role="img" aria-label="红梅">
+      <defs><linearGradient id="sky4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1f3f6"/><stop offset="1" stop-color="#f9fafb"/></linearGradient></defs>
+      <rect width="400" height="250" fill="url(#sky4)"/>
+      <path d="M18 216 C 96 196 148 168 196 156 C 258 140 306 112 376 84" fill="none" stroke="#6d5847" stroke-width="4" stroke-linecap="round"/>
+      <path d="M150 170 C 170 150 186 146 210 142" fill="none" stroke="#6d5847" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M282 118 C 300 104 312 102 330 104" fill="none" stroke="#6d5847" stroke-width="2.4" stroke-linecap="round"/>
+      <g>
+       <circle cx="96" cy="192" r="7" fill="#b23b2e"/><circle cx="96" cy="192" r="2.2" fill="#f2d8d0"/>
+       <circle cx="160" cy="164" r="6.4" fill="#b23b2e"/><circle cx="160" cy="164" r="2" fill="#f2d8d0"/>
+       <circle cx="212" cy="144" r="7.4" fill="#a83226"/><circle cx="212" cy="144" r="2.4" fill="#f2d8d0"/>
+       <circle cx="268" cy="128" r="6" fill="#b23b2e"/><circle cx="268" cy="128" r="1.9" fill="#f2d8d0"/>
+       <circle cx="324" cy="106" r="7" fill="#b23b2e"/><circle cx="324" cy="106" r="2.2" fill="#f2d8d0"/>
+       <circle cx="360" cy="90" r="5.6" fill="#a83226"/><circle cx="360" cy="90" r="1.8" fill="#f2d8d0"/>
+      </g>
+      <circle cx="140" cy="214" r="2" fill="#fff" opacity=".9"/><circle cx="300" cy="196" r="2.4" fill="#fff" opacity=".8"/><circle cx="240" cy="208" r="1.8" fill="#fff" opacity=".85"/>
+     </svg>
+    </div>
+    <figcaption><b>红梅</b><span>「梅须逊雪三分白，雪却输梅一段香。」</span></figcaption>
+   </figure>
+  </div>
+ </div>
+</section>
+<section class="sec" id="qu">
+ <div class="wrap">
+  <header class="sec-head reveal">
+   <div>
+    <p class="kicker">Winter Pleasures · 冬趣</p>
+    <h2>把冬天过成仪式</h2>
+   </div>
+   <p class="sec-lead">冬天的快乐，说来也简单：把热气腾腾的事物拢到面前，把时间调慢半拍。<em>热闹与安静，都算过冬天。</em></p>
+  </header>
+  <div class="qu-grid">
+   <article class="qu-item reveal" style="--d:.03s">
+    <span class="qu-icon"><svg class="icon"><use href="#i-tea"/></svg></span>
+    <h3>煮茶</h3>
+    <p>温壶、投茶、听水声，看一缕热气把整个下午泡软。</p>
+   </article>
+   <article class="qu-item reveal" style="--d:.08s">
+    <span class="qu-icon"><svg class="icon"><use href="#i-pot"/></svg></span>
+    <h3>围炉</h3>
+    <p>小火慢煨，蒸汽腾腾，把话说到冬天深处去。</p>
+   </article>
+   <article class="qu-item reveal" style="--d:.13s">
+    <span class="qu-icon"><svg class="icon"><use href="#i-snowman"/></svg></span>
+    <h3>堆雪人</h3>
+    <p>两颗雪球、一个纽扣微笑，和一次认真的鞠躬致意。</p>
+   </article>
+   <article class="qu-item reveal" style="--d:.18s">
+    <span class="qu-icon"><svg class="icon"><use href="#i-ball"/></svg></span>
+    <h3>打雪仗</h3>
+    <p>童年游戏的大人版：出手要快，笑出声也要快。</p>
+   </article>
+   <article class="qu-item reveal" style="--d:.23s">
+    <span class="qu-icon"><svg class="icon"><use href="#i-book"/></svg></span>
+    <h3>读书</h3>
+    <p>夜长、灯暖、书是好书，冬天最适合读慢一点。</p>
+   </article>
+   <article class="qu-item reveal" style="--d:.28s">
+    <span class="qu-icon"><svg class="icon"><use href="#i-window"/></svg></span>
+    <h3>观雪</h3>
+    <p>什么也不做，坐在窗边，等世界替你安静下来。</p>
+   </article>
+  </div>
+ </div>
+</section>
+<section class="sec sec-band" id="shi">
+ <div class="wrap">
+  <header class="sec-head reveal">
+   <div>
+    <p class="kicker">Winter Rituals · 食俗</p>
+    <h2>补冬 · 温补</h2>
+   </div>
+   <p class="sec-lead">「补冬」是流传千年的旧俗——立冬之日，以食温身。一碗、一盏，<em>暖的是身子，也是心境</em>。成都的冬天，自然少不了那口滚烫的鲜香。</p>
+  </header>
+  <div class="shi-grid">
+   <article class="shi-item reveal" style="--d:.05s">
+    <p class="shi-num">01 / 饺</p>
+    <span class="shi-icon"><svg class="icon"><use href="#i-dumpling"/></svg></span>
+    <h3>立冬饺子</h3>
+    <p>北方「立冬不端饺子碗，冻掉耳朵没人管」。皮薄馅厚，一口咬住整个冬天。</p>
+   </article>
+   <article class="shi-item reveal" style="--d:.14s">
+    <p class="shi-num">02 / 汤</p>
+    <span class="shi-icon"><svg class="icon"><use href="#i-pot"/></svg></span>
+    <h3>羊肉温汤</h3>
+    <p>「冬补羊肉，一世不瘦。」铜锅里咕嘟着，白汽升起来，寒气就退得远了。</p>
+   </article>
+   <article class="shi-item reveal" style="--d:.23s">
+    <p class="shi-num">03 / 温</p>
+    <span class="shi-icon"><svg class="icon"><use href="#i-cup"/></svg></span>
+    <h3>温酒一杯</h3>
+    <p>「绿蚁新醅酒，红泥小火炉。」酒是温的，话是长的，冬天就该这样开场。</p>
+   </article>
+  </div>
+ </div>
+</section>
+<section class="sec" id="uestc">
+ <div class="wrap">
+  <header class="sec-head reveal">
+   <div>
+    <p class="kicker">UESTC · Lidong</p>
+    <h2>科大的立冬</h2>
+   </div>
+   <p class="sec-lead">成都的冬天是温柔的。西望山下的十一月，清晨还带着薄雾，湖面平静得像一封未拆的信。<em>在电子科大，立冬不是节气表上的一行字，而是它落在我们日常里的方式。</em></p>
+  </header>
+  <div class="uestc-card reveal" style="--d:.1s">
+   <div class="uestc-copy">
+    <p>它是两节课之间，食堂窗口升起的白汽；是图书馆深夜那盏不灭的灯；是一杯热拿铁在手心留下的温度；也是操场上，一场迟来的初雪，把教学楼染成一幅水墨。</p>
+    <p>立冬这天，校学生会宣传部想对你说——</p>
+    <div class="uestc-quote">
+     <b>「求真逐变」</b>之余，也别忘了停下来，接住这个冬天的第一口暖意。<br>
+     愿你在这个冬天，有热茶，有书，有同路人。
+    </div>
+   </div>
+   <div class="uestc-side">
+    <div class="chip-row">
+     <span class="chip">近期 · 煮茶会</span>
+     <span class="chip">冬日市集</span>
+     <span class="chip">第一场雪计划</span>
+    </div>
+    <div class="seal" aria-hidden="true"><span>立冬</span></div>
+   </div>
+  </div>
+ </div>
+</section>
+</main>
+<footer>
+ <div class="foot-seal"><span>立冬</span></div>
+ <p class="foot-name">电子科技大学校学生会 · 宣传部</p>
+ <p class="foot-line">2026 立冬特辑 · 二〇二六年十一月</p>
+ <p class="foot-small">© 2026 UESTC STUDENT UNION · PUBLICITY DEPT. — LIDONG COLLECTION</p>
+</footer>
+<script>
+(function(){
+ 'use strict';
+ var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+ /* ---- snow ---- */
+ var cv = document.getElementById('snow'), cx = cv.getContext('2d');
+ var w, h, flakes = [], t = 0;
+ function resize(){ w = cv.width = window.innerWidth; h = cv.height = window.innerHeight; }
+ resize(); window.addEventListener('resize', resize);
+ var palette = ['rgba(255,255,255,.92)','rgba(168,188,208,.5)','rgba(255,255,255,.65)','rgba(146,168,190,.42)','rgba(255,255,255,.8)'];
+ var N = Math.max(60, Math.min(150, Math.round(window.innerWidth / 10)));
+ for (var i = 0; i < N; i++){
+   flakes.push({
+     x: Math.random()*w, y: Math.random()*h,
+     r: .7 + Math.random()*2.3,
+     vy: .22 + Math.random()*.75,
+     amp: 4 + Math.random()*16,
+     ph: Math.random()*Math.PI*2,
+     sp: .0015 + Math.random()*.004,
+     c: palette[i % palette.length]
+   });
+ }
+ function draw(){
+   cx.clearRect(0,0,w,h);
+   for (var j=0;j<flakes.length;j++){
+     var f = flakes[j];
+     cx.beginPath();
+     cx.arc(f.x + Math.sin(f.ph)*f.amp*0.35, f.y, f.r, 0, 6.2832);
+     cx.fillStyle = f.c;
+     cx.fill();
+   }
+ }
+ function tick(){
+   t++;
+   for (var j=0;j<flakes.length;j++){
+     var f = flakes[j];
+     f.y += f.vy; f.ph += f.sp;
+     if (f.y > h + 8){ f.y = -8; f.x = Math.random()*w; }
+   }
+   draw();
+   requestAnimationFrame(tick);
+ }
+ if (reduce){ draw(); } else { tick(); }
+
+ /* ---- reveal ---- */
+ var io = new IntersectionObserver(function(entries){
+   entries.forEach(function(e){
+     if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+   });
+ }, { threshold: .12, rootMargin: '0px 0px -6% 0px' });
+ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+ /* ---- nav state ---- */
+ var nav = document.querySelector('.nav');
+ var heroInner = document.querySelector('.hero-inner');
+ var ticking = false;
+ function onScroll(){
+   if (ticking) return;
+   ticking = true;
+   requestAnimationFrame(function(){
+     var d = document.documentElement;
+     nav.classList.toggle('scrolled', d.scrollTop > 12);
+     var sy = Math.min(window.innerHeight, d.scrollTop);
+     if (heroInner && !reduce){
+       heroInner.style.transform = 'translateY(' + (sy*0.16).toFixed(1) + 'px)';
+       heroInner.style.opacity = Math.max(0, 1 - sy/(window.innerHeight*0.9));
+     }
+     ticking = false;
+   });
+ }
+ window.addEventListener('scroll', onScroll, { passive: true });
+ onScroll();
+
+ /* ---- scrollspy ---- */
+ var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+ var map = {};
+ links.forEach(function(a){ map[a.getAttribute('href').slice(1)] = a; });
+ var so = new IntersectionObserver(function(entries){
+   entries.forEach(function(e){
+     if (e.isIntersecting){
+       links.forEach(function(l){ l.classList.remove('active'); });
+       var l = map[e.target.id];
+       if (l) l.classList.add('active');
+     }
+   });
+ }, { rootMargin: '-38% 0px -55% 0px' });
+ document.querySelectorAll('main section').forEach(function(s){ so.observe(s); });
+
+ /* ---- close mobile menu on link click ---- */
+ links.forEach(function(a){
+   a.addEventListener('click', function(){
+     document.querySelector('.nav').classList.remove('nav-open');
+   });
+ });
+})();
+</script>
+</body>
+</html>
